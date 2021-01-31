@@ -84,7 +84,6 @@ void reconnect() {
 
 void setup() {
   // init the serial
-  //Serial.begin(115200);
   voltage = ((float) ((int)(ESP.getVcc() / 10.24 )) / 100 );
   pinMode(3, OUTPUT);
 
@@ -107,12 +106,10 @@ void setup() {
 
   // init the WiFi connection
   WiFi.mode(WIFI_STA);
-  //Serial.println(WIFI_SSID);
   WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
 
   while (WiFi.status() != WL_CONNECTED) {
     delay(500);
-    //Serial.print(".");
   }
   
   // init the MQTT connection
@@ -129,10 +126,8 @@ void loop() {
 
   publishData();
 
-  //Serial.println("INFO: Closing the MQTT connection");
   client.disconnect();
 
-  //Serial.println("INFO: Closing the Wifi connection");
   WiFi.disconnect();
 
   
